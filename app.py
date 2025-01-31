@@ -1,3 +1,4 @@
+import os
 from flask import Flask, render_template, request, Response
 import cv2
 from pyzbar.pyzbar import decode
@@ -29,7 +30,7 @@ def generate_frames():
                     cv2.line(frame, hull[j], hull[(j + 1) % n], (255, 0, 0), 3)
 
                 data = obj.data.decode('utf-8')
-                if data == 'https://ar-frame.vercel.app/sam.mp4':
+                if data == 'your_qr_code_data':
                     # Play video or perform any action
                     pass
 
@@ -45,4 +46,5 @@ def video_feed():
     return Response(generate_frames(), mimetype='multipart/x-mixed-replace; boundary=frame')
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    port = int(os.environ.get('PORT', 5000))
+    app.run(host='0.0.0.0', port=port)
