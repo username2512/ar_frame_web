@@ -2,6 +2,8 @@
 
 # Install zbar library
 # apt-get update && apt-get install -y libzbar0/
+apt-get install --reinstall apt
+
 apt-get update && apt-get install -y libzbar0
 
 pip install -r requirements.txt
